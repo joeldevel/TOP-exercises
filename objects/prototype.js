@@ -58,3 +58,4 @@ speedy.eat("apple");
 console.log(speedy.stomach); //apple
 
 console.log(lazy.stomach); // apple. Why?
+//Because both instances share the stomach property I think
