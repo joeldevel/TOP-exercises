@@ -1,3 +1,5 @@
+let myLibrary = [];
+
 function Book(title, author, pages, read ) {
   this.title = title;
   this.author = author;
@@ -8,6 +10,14 @@ function Book(title, author, pages, read ) {
     return `${this.title} by ${this.author}, ${pages} pages, ${readStatus}.`;
   }
 }
-let book1 = new Book('Ivy Gripped the Steps', 'Elizabeth Bowen', 23, true);
 
-console.log(book1.info());
+function addBookToLibrary(book, library) {
+
+}
+
+function displayBooks(books) {
+
+}
+// let book1 = new Book('Ivy Gripped the Steps', 'Elizabeth Bowen', 23, true);
+
+// console.log(book1.info());
