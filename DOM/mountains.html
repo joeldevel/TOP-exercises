@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Mountains</h1>
+
+<div id="mountains"></div>
+
+<script>
+  const MOUNTAINS = [
+    {name: "Kilimanjaro", height: 5895, place: "Tanzania"},
+    {name: "Everest", height: 8848, place: "Nepal"},
+    {name: "Mount Fuji", height: 3776, place: "Japan"},
+    {name: "Vaalserberg", height: 323, place: "Netherlands"},
+    {name: "Denali", height: 6168, place: "United States"},
+    {name: "Popocatepetl", height: 5465, place: "Mexico"},
+    {name: "Mont Blanc", height: 4808, place: "Italy/France"}
+  ];
+
+  // Your code here
+  const table = document.createElement('table');
+  const tableHeaderData = Object.keys(MOUNTAINS[0]);
+  // console.log(tableHeader);
+  const tableHeaderRow = document.createElement('tr');
+  tableHeaderData.forEach(key =>{
+    const data = document.createElement('th');
+    data.textContent = `${key}`;
+    tableHeaderRow.appendChild(data);
+  });
+  table.appendChild(tableHeaderRow);
+
+  // populate table
+  MOUNTAINS.forEach(mountain=>{
+    const row = document.createElement('tr');
+    const dataRow = Object.values(mountain);
+    dataRow.forEach(datum=>{
+      const cell = document.createElement('td');
+      cell.textContent = `${datum}`;
+      if(typeof datum ==="number") {
+        cell.style.textAlign = 'right';
+        cell.style.color ='red';
+        cell.style.width= '100px';
+        cell.style.background ='plum';
+      }
+      row.appendChild(cell);
+    });
+    table.appendChild(row);
+  });
+
+  document.querySelector('#mountains').appendChild(table);
+</script>
+
+  </body>
+</html>
