@@ -9,24 +9,12 @@ const table = document.querySelector('.display-books');
 const createNewBook = document.querySelector('#create-new-book');
 
 
-// console.log(createNewBook);
-// console.log(title.value, author, pages);
-
-/*
-for (let i of read) {
-if (i.checked) {
-    console.log(i);
-  }
-}
-*/
-
 function checkRead(input) {
   for (let i of input) {
     if (i.checked) return i;
   }
 }
 
-// console.log(checkRead(read).value);
 let myLibrary = [];
 
 function Book(title, author, pages, read ) {
@@ -42,9 +30,10 @@ function Book(title, author, pages, read ) {
 
 function addBookToLibrary(e) {
   e.preventDefault();
-  const book = new Book(title.value, author.value, parseInt(pages.value), true);
+  const readStatus = checkRead(read).value;
+  const book = new Book(title.value, author.value, parseInt(pages.value), parseBool(readStatus));
+
   myLibrary.push(book);
-  console.log("insertando libro");
   appendBookToTable(book);
 }
 
@@ -52,11 +41,11 @@ function displayBooks(books) {
   books.forEach(appendBookToTable);
 }
 
-// let index = myArray.findIndex( element => {
-//   if (element.name === 'Maria') {
-//     return true;
-//   }
-// });
+function parseBool(str) {
+    if(str.toLowerCase() === 'true') return true;
+    if(str.toLowerCase() === 'false') return false;
+}
+
 function findBookIndex(title) {
   let index = myLibrary.findIndex( element => {
     if (element.title === title) {
@@ -88,9 +77,6 @@ function updateReadStatus(bookId) {
   myLibrary[bookId].toggleReadStatus();
 }
 
-// function getBookInTable() {
-//
-// }
 
 //********************************************************************/
 //                          populate books
@@ -115,22 +101,19 @@ displayBooks(myLibrary);
 createNewBook.addEventListener('click', addBookToLibrary);
 
 // add event listener to dinamically generated elements
+// attach the listener to the body and then check for the target
+// (the element clicked)
 document.querySelector('body').addEventListener('click', function(event) {
+
+  // row to delete
+  const row = event.target.parentNode.parentNode;
+  const id = row.getAttribute("data-book-id");
+
   if (event.target.name.toLowerCase() === 'delete-button') {
-    // console.log(event.target);
-    // console.log("parent: ", event.target.parentNode);
-    // console.log("row: ", event.target.parentNode.parentNode);
-    const row = event.target.parentNode.parentNode;
-    const id = row.getAttribute("data-book-id");
-    // console.log(id.getAttribute("data-book-id"));
     deleteBookFromTable(id);
   }
   if( event.target.name.toLowerCase() === 'toggle-read-button') {
-    // console.log("toggling");
-    const row = event.target.parentNode.parentNode;
-    const id = row.getAttribute("data-book-id");
-    // console.log(id);
-    // change data in myLibrary
+      // change data in myLibrary
     updateReadStatus(id);
 
     // update GUI
@@ -141,19 +124,38 @@ document.querySelector('body').addEventListener('click', function(event) {
     else if(button.textContent==='no') {
       button.textContent = 'yes';
     }
-    // console.log(button.textContent);
   }
 });
 
 
-// add functionality to book
+//********************************************************************/
+//               add functionality to book
+//********************************************************************/
 function toggleReadStatus() {
   this.read = !this.read;
 }
+
 Book.prototype.toggleReadStatus = toggleReadStatus;
 
+
+// examples
 // console.log(book1.info());
 
 // Student.prototype.sayName = function() {
 //   console.log(this.name)
 // }
+
+
+// let index = myArray.findIndex( element => {
+//   if (element.name === 'Maria') {
+//     return true;
+//   }
+// });
+
+/*
+for (let i of read) {
+if (i.checked) {
+    console.log(i);
+  }
+}
+*/
