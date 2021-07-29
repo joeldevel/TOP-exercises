@@ -8,7 +8,7 @@
   <body>
     <h1>Library App <small>From TOP projects</small></h1>
     <div class="input-form-container">
-      <form action="">
+      <form action="#">
         <div class="input-container">
           <label for="title">title:</label>
           <input type="text" name="title" id="title">
@@ -31,10 +31,25 @@
           <input type="radio" id="read-false" name="read" value="false">
         </div>
 
-        <input type="submit" name="" value="create book">
+        <input type="submit" name="create-new-book" id="create-new-book" value="create book">
       </form>
     </div>
+    <hr>
+    <div class="display-books-table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>title</th>
+            <th>author</th>
+            <th>pages</th>
+            <th>read</th>
+          </tr>
+        </thead>
+        <tbody class="display-books">
 
+        </tbody>
+      </table>
+    </div>
 
     <script type="text/javascript" src="books.js"></script>
   </body>
