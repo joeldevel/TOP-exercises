@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>JS Object literals</title>
+  </head>
+  <body>
+    <h1>Object literals are objects defines using { } and key-value properties</h1>
+    <p>Can have methods too</p>
+    <code>
+      <pre>
+const cat = {
+  name: "michi",
+  age: 4,
+  askForFood: function() {
+    return "Miaaaau, Meeeow, Gggggh!";
+  }
+}
+</pre>
+</code>
+<p>So we can call name, age and askForFood on cat, using dot notation or brackets</p>
+<code>
+<pre>
+console.log(cat.name);
+console.log(cat.['name']); // -> michi
+
+console.log(cat.age);
+console.log(cat.['age']); // -> 4
+
+console.log(cat.askForFood()); // -> Miaaaau, Meeeow, Gggggh!
+console.log( cat['askForFood']() ); // Be careful with the syntax!
+</pre>
+  </body>
+</html>
