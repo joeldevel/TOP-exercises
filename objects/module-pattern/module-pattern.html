@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/enlighter/enlighterjs.min.css">
+    <title>Module pattern</title>
+  </head>
+  <body>
+    <header>
+      <h1>The module pattern allows encapsulation</h1>
+    </header>
+
+    <code>
+  const person = (name, age) => {
+    return {name, age}
+  }
+    </code>
+    <script type="text/javascript" src="js/enlighterjs.min.js"></script>
+    <script type="text/javascript">
+        // INIT CODE - simple page-wide initialization based on css selectors
+        // - highlight all pre + code tags (CSS3 selectors)
+        // - use javascript as default language
+        // - use theme "enlighter" as default theme
+        // - replace tabs with 2 spaces
+        EnlighterJS.init('pre', 'code', {
+                language : 'javascript',
+                theme: 'dracula',
+                indent : 2
+        });
+    </script>
+  </body>
+</html>

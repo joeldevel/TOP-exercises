@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/enlighter/enlighterjs.min.css">
+    <title>Factory functions</title>
+  </head>
+  <body>
+    <h1>Factory functions</h1>
+    <p>A factory function is a function tha returns an object</p>
+    <code data-enlighter-language="javascript">
+function person(name, age) {
+  return {name, age};
+}
+    </code>
+      <p>or</p>
+    <code>
+const person = function(name, age) {
+  return {name, age};
+}
+    </code>
+    <p>or</p>
+  <code>
+const person = (name, age) => {
+  return {name, age}
+}
+  </code>
+
+
+
+
+    <script type="text/javascript" src="js/enlighterjs.min.js"></script>
+    <script type="text/javascript">
+        // INIT CODE - simple page-wide initialization based on css selectors
+        // - highlight all pre + code tags (CSS3 selectors)
+        // - use javascript as default language
+        // - use theme "enlighter" as default theme
+        // - replace tabs with 2 spaces
+        EnlighterJS.init('pre', 'code', {
+                language : 'javascript',
+                theme: 'dracula',
+                indent : 2
+        });
+    </script>
+    <script type="text/javascript" src="js/factory.js">
+
+    </script>
+  </body>
+</html>
