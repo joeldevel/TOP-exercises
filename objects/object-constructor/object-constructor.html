@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/enlighter/enlighterjs.min.css">
+    <title>Function object constructor</title>
+  </head>
+  <body>
+    <header>
+      <h1>A (function) object constructor creates an object when used with new keyword</h1>
+    </header>
+    <code>
+
+function Person(name, age){
+  this.name = name;
+  this.age = age;
+  this.makeBread = function() {
+    return `${this.name} makes bread!`;
+  }
+}
+
+let ana = new Person('ana', 28);
+let floncho = new Person('floncho', 56);
+
+console.log(ana.name); // -> ana
+console.log(ana.age); // -> 28
+console.log(ana.makeBread()); // -> ana makes bread!
+console.log(floncho.makeBread()); // -> floncho makes bread!
+
+    </code>
+
+<h2>The prototype</h2>
+<p>[[Prototype]] references either null or another object and allows one object to inherit
+properties from another</p>
+<p>If a property is no found in an object, JS will go up in the prototype chain looking for that property</p>
+
+<p><code>__proto__</code> is a getter/setter for the <code>[[Prototype]]</code> property</p>
+<code>
+
+</code>
+<p>Every time a new object is created, all functions inside are copied for each instance</p>
+<p>To avoid that we can attach these functions to the pototype</p>
+<code>
+
+function Person(name, age){
+  this.name = name;
+  this.age = age;
+}
+//put the function in the prototype
+Person.prototype.makeBread = function() {
+  return `${this.name} makes bread!`;
+}
+</code>
+
+
+    <script type="text/javascript" src="js/enlighterjs.min.js"></script>
+    <script type="text/javascript">
+        // INIT CODE - simple page-wide initialization based on css selectors
+        // - highlight all pre + code tags (CSS3 selectors)
+        // - use javascript as default language
+        // - use theme "enlighter" as default theme
+        // - replace tabs with 2 spaces
+        EnlighterJS.init('pre', 'code', {
+                language : 'javascript',
+                theme: 'dracula',
+                indent : 2
+        });
+    </script>
+  </body>
+</html>
