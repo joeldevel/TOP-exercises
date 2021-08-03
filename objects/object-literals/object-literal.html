@@ -6,6 +6,15 @@
   </head>
   <body>
     <h1>Object literals are objects defines using { } and key-value properties</h1>
+    <p>A simple object</p>
+    <code>
+      <pre>
+const cat = {
+  name: "michi",
+  age: 4,
+}
+</pre>
+</code>
     <p>Can have methods too</p>
     <code>
       <pre>
@@ -30,5 +39,77 @@ console.log(cat.['age']); // -> 4
 console.log(cat.askForFood()); // -> Miaaaau, Meeeow, Gggggh!
 console.log( cat['askForFood']() ); // Be careful with the syntax!
 </pre>
+</code>
+<p>A property can be a computed (use this only if needed)</p>
+<code>
+  <pre>
+let propertyName = 'name';
+
+let book = {
+  [propertyName]: 'Ficciones',
+}
+console.log(book.name); // -> Ficciones
+  </pre>
+</code>
+<p>Property and values shorthand -- the next one is a function factory</p>
+<code>
+  <pre>
+function createBook(title, author, pages) {
+  return { title:title, author: author, pages: pages};
+}
+// could be written as follows
+function createBook2(title, author, pages) {
+  return { title, author, pages};
+}
+
+  </pre>
+</code>
+
+  <h2>How to know if a property exists in an object</h2>
+  <p>If a property does NOT exists and we try to call it, we receive <code>undefined</code></p>
+  <code>
+    <pre>
+let house = { 'address': 123, price: 1000000};
+console.log(house.rooms); // -> undefined
+// we can use the in operator to check, in case the property exists but holds 'undefined' as value
+console.log('rooms' in house); // -> false
+    </pre>
+  </code>
+<p>The for ... in loop</p>
+<code>
+  <pre>
+function createBook(title, author, pages) {
+  return { title, author, pages};
+}
+
+const book = createBook('Ficciones', 'J.L.B', 100);
+
+for( let key in book) {
+  console.log(`${key}: ${book[key]}`);
+}
+  </pre>
+</code>
+<h2>How to delete a property?</h2>
+<p>Use <code>delete object.property</code></p>
+<code>
+  <pre>
+function createBook(title, author, pages, price) {
+  return { title, author, pages, price};
+}
+
+const book = createBook('Ficciones', 'J.L.B', 100, 200);
+
+for( let key in book) {
+  console.log(`${key}: ${book[key]}`);
+}
+
+// now delete the price
+delete book.price; // -> true
+
+for( let key in book) {
+  console.log(`${key}: ${book[key]}`);
+}
+  </pre>
+</code>
   </body>
 </html>
