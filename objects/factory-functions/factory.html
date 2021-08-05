@@ -10,22 +10,53 @@
     <p>A factory function is a function tha returns an object</p>
     <code data-enlighter-language="javascript">
 function person(name, age) {
-  return {name, age};
+  const buildHouse = function() {
+    return `${name} is building a house`;
+  }
+  return {name, age, buildHouse};
 }
+// create an object
+const bob = person('bob', 23);
+console.log(bob.buildHouse());
     </code>
       <p>or</p>
     <code>
+// be careful with 'this'
 const person = function(name, age) {
-  return {name, age};
+  const buildHouse = () => {
+    return `${name} is building a house`;
+  }
+  return {name, age, buildHouse};
 }
     </code>
     <p>or</p>
   <code>
+// here againg, 'this'
 const person = (name, age) => {
-  return {name, age}
+  const buildHouse = () => `${name} is building a house`;
+  return {name, age, buildHouse};
 }
   </code>
 
+<h2>Inheritance with factories</h2>
+<code>
+const Argenchine = (name) => {
+  const sayName = () => console.log(`my name is ${name}`)
+  return {sayName}
+}
+
+const Peronist = (name) => {
+  // simply create an Argenchine and pull out the sayName function with destructuring assignment syntax!
+  const {sayName} = Argenchine(name);
+  const doPeronism = () => console.log('Giving rights to the people!');
+  return {sayName, doPeronism}
+}
+
+const bahbee = Peronist('bahbee');
+
+bahbee.sayName() //my name is bahbee
+bahbee.doPeronism() // Giving rights...
+</code>
 
 
 

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/enlighter/enlighterjs.min.css">
+    <title>Inmediate Invoked Function Expression</title>
+  </head>
+  <body>
+    <h1><abbr title="Immediately Invoked Function Expressions">IIFE</abbr></h1>
+    <p>A function that is inmediately invoked</p>
+    <code>
+(function(params){
+  //body
+})();
+// OK
+    </code>
+
+    <p>Such as this one</p>
+    <code>
+(function () {
+    console.log("I'm been inmediately invoked");
+})();
+    </code>
+    <p>this works too</p>
+    <code>
+(()=> { console.log("I'm been inmediately invoked");})();
+    </code>
+
+<p>So we wrap the function within parentheses and append <code>()</code> at the end</p>
+
+
+    <script type="text/javascript" src="js/enlighterjs.min.js"></script>
+    <script type="text/javascript">
+        // INIT CODE - simple page-wide initialization based on css selectors
+        // - highlight all pre + code tags (CSS3 selectors)
+        // - use javascript as default language
+        // - use theme "enlighter" as default theme
+        // - replace tabs with 2 spaces
+        EnlighterJS.init('pre', 'code', {
+                language : 'javascript',
+                theme: 'dracula',
+                indent : 2
+        });
+    </script>
+  </body>
+</html>
