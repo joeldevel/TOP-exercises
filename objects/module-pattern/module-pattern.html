@@ -9,12 +9,60 @@
     <header>
       <h1>The module pattern allows encapsulation</h1>
     </header>
-
+    <p>We Assign an IIFE to a variable, that will be our module</p>
     <code>
-  const person = (name, age) => {
-    return {name, age}
-  }
+let library = (function() {
+  //
+})();
     </code>
+    <p>Next we return an object with the method(s) we want to expose</p>
+    <code>
+let library = (function() {
+  return {
+    numberOfBooks: function() {
+      return 10;
+    }
+  }
+})();
+// use it
+console.log(library.numberOfBooks()); // -> 10
+    </code>
+    <p>Things we do not return are private</p>
+    <p>In the example the books array cannot be accessed directly from the outside,
+      but we can still add a book using the provided method
+    </p>
+    <code>
+let library = (function() {
+  let books = ['book1', 'book2', 'book3'];
+
+  function addBook(book) {
+    books.push(book);
+  }
+
+  function numberOfBooks() {
+    return books.length;
+  }
+
+  function showBooks() {
+    books.forEach( book => {console.log(book)});
+  }
+  return {
+    numberOfBooks: numberOfBooks,
+    addBook: addBook,
+    showBooks: showBooks
+  }
+})();
+// use it
+console.log(library.numberOfBooks()); // -> 3
+console.log(library.books); // -> undefined
+library.addBook('another book');
+console.log(library.numberOfBooks()); // -> 4
+    </code>
+
+
+
+
+
     <script type="text/javascript" src="js/enlighterjs.min.js"></script>
     <script type="text/javascript">
         // INIT CODE - simple page-wide initialization based on css selectors
