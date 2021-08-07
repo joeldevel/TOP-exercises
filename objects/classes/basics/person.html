@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ES6 Classes</title>
+  </head>
+  <body>
+    <header>
+      <h1>Using 'classes' in JavaScript </h1>
+    </header>
+    <p>
+      There is the <code>class</code> keyword
+    </p>
+
+    <code>
+      <pre>
+class Person {
+  static staticMethod(str) {
+    return `This method belongs to the class: ${str}`;
+  }
+
+  constructor(firstName, lastName, age) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+  }
+  fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+}
+
+// a child class
+
+class BananaPerson extends Person {
+  // call the super class in the constructor
+  constructor(firstName, lastName, age, isGreen) {
+    super(firstName,lastName, age);
+    this.isGreen = isGreen;
+  }
+  isStillGreen() {
+    return this.isGreen;
+  }
+}
+
+// create a few people
+let pepe = new Person('pepe', 'lopez', 100);
+let mercedez = new Person('mercedez', 'benz', 120);
+let carmela = new Person('carmela', 'tubetti', 18);
+
+// use the methods
+console.log(pepe.fullName());
+console.log(mercedez.fullName());
+console.log(carmela.fullName());
+
+// use a static method
+console.log(Person.staticMethod('Cats cats Caaaats!'));
+
+// create a BananaPerson
+let johnyBanana = new BananaPerson('johny', 'bananacious', 34, false);
+// use inherited method
+console.log(johnyBanana.fullName());
+// use own class-specific method
+console.log(johnyBanana.isStillGreen());
+      </pre>
+    </code>
+  </body>
+</html>
