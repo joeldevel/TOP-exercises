@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+  <img src="#" />
+
+  <script>
+      const img = document.querySelector('img');
+
+      fetch('https://jsonplaceholder.typicode.com/photos/1', {mode: 'cors'})
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(response) {
+        console.log(response.url);
+        img.src = response.url;
+      });
+
+  </script>
+  </body>
+</html>
