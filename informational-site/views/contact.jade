@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  p Please complete the form
+
+  form(name="contact", method="get" action="#")
+    div.input
+      span.label Your name
+      input(type="text", name="name")
+    div.input
+      span.label Your email
+      input(type="email", name="email")
+    div.actions
+      input(type="submit", value="send")
