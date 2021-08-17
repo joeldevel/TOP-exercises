@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+
+<h1>The dialog element</h1>
+
+<p>This is some text.</p>
+
+<p>This is some text.</p>
+
+<dialog open>This is an open dialog window</dialog>
+
+<p>This is some text.</p>
+
+<p>This is some text.</p>
+
+<p><b>Note:</b> The dialog tag is not supported in Safari and Edge (prior version 79).</p>
+<button>toggle dialog</button>
+
+<script>
+	const btn = document.querySelector('button');
+	const dialog = document.querySelector('dialog');
+    btn.addEventListener('click', function(){
+        console.log(dialog.hasAttribute("open"));
+        if(dialog.hasAttribute('open')) {
+          dialog.removeAttribute('open');
+        } else {
+          dialog.setAttribute('open', true);
+        }
+    });
+
+</script>
+
+</body>
