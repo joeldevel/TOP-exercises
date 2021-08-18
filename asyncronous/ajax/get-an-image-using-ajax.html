@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>get image | ajax</title>
+  </head>
+  <body>
+    <body>
+      <button id="fetch-another">Get another</button>
+      <img src="#" />
+
+
+    <script>
+        const img = document.querySelector('img');
+        const btn = document.querySelector('#fetch-another');
+        let xhr;
+        function getImage() {
+          // create XMLHttpRequest object
+          xhr = new XMLHttpRequest();
+          // tell what to do when change
+          xhr.onreadystatechange = placeImage;
+          // open the connection
+          const id = Math.floor((Math.random() * 100) + 1);
+          xhr.open('GET', 'https://jsonplaceholder.typicode.com/photos/'+id, true);
+          // send request
+          xhr.send();
+        }
+        function placeImage() {
+          // check status
+          if(xhr.readyState===XMLHttpRequest.DONE) {
+            if(xhr.status===200) {
+              const imgSrc = JSON.parse(xhr.response);
+              img.src = imgSrc.url;
+            } else {
+              console.log('cannot get data');
+            }
+          }
+        }
+        getImage();
+        btn.addEventListener('click', getImage);
+    </script>
+    </body>
+  </body>
+</html>
