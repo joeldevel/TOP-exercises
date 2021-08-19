@@ -1,9 +1,10 @@
 import React from 'react';
+import Overview from './components/Overview';
 
 function App() {
   return (
     <div>
-      task app
+      <Overview people={['pepe','juancito','bolainas']}/>
     </div>
   );
 }
