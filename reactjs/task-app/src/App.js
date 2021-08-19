@@ -11,7 +11,9 @@ class App extends React.Component {
     }
     this.handleTextInput = this.handleTextInput.bind(this);
     this.handleButton = this.handleButton.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
+
   handleTextInput(e) {
     this.setState({
       textInput: e.target.value
@@ -21,6 +23,12 @@ class App extends React.Component {
     this.setState({
       tasks : [...this.state.tasks, this.state.textInput],
       textInput: ''
+    })
+  }
+  handleDelete(item) {
+    console.log(item);
+    this.setState({
+      tasks: [...this.state.tasks.filter(task=>task!==item)]
     })
   }
   render() {
@@ -34,7 +42,9 @@ class App extends React.Component {
             onClick={this.handleButton}
             >ADD</button>
         </div>
-        <Overview tasks={this.state.tasks}/>
+        <Overview tasks={this.state.tasks}
+              handleDelete={this.handleDelete}
+          />
       </div>
     );
   }
