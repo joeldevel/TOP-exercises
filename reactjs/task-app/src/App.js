@@ -4,6 +4,12 @@ import {component} from 'react';
 import Overview from './components/Overview';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tasks : ['buy paper', 'walk the cat', 'sleep a lot']
+    }
+  }
   render() {
     return (
       <div>
@@ -11,7 +17,7 @@ class App extends React.Component {
           <input type="text"/>
           <button type="button" name="add-task-btn">ADD</button>
         </div>
-        <Overview people={['pepe','juancito','bolainas']}/>
+        <Overview tasks={this.state.tasks}/>
       </div>
     );
   }

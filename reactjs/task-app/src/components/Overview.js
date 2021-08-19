@@ -3,7 +3,7 @@ import React from 'react';
 function Overview(props) {
   return (
     <ul>
-      {props.people.map((person,i)=><li key={i}>{person}</li>)}
+      {props.tasks.map((task,i)=><li key={i}>{task}</li>)}
     </ul>
   );
 }
