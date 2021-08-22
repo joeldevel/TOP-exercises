@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <style>
+    h1 { text-align: center; color: whitesmoke;}
+    body {
+      font-family: sans-serif;
+      /* background-color: greenyellow; */
+      background-image: url('/img/px_by_Gre3g.png');
+    }
+    #load-data {
+      display: block;
+      margin: 0 auto;
+    }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        min-width: 50vw;
+        max-width: 80vw;
+        border: 1px solid #ddd;
+        margin: 10px auto;
+      }
+      thead {
+        background: slategrey;
+        font-size: 1.3rem;
+        text-transform: capitalize;
+        color: whitesmoke;
+      }
+      th, td {
+        text-align: left;
+        padding: 16px;
+      }
+      tbody tr:nth-child(odd) {
+        background: white;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      </style>
+    <title>Using ajax</title>
+  </head>
+  <body>
+    <h1>Getting data using ajax</h1>
+    <button type="button" name="button" id="load-data">load data</button>
+    <table class="table">
+
+    </table>
+
+    <script type="text/javascript">
+
+    const table = document.querySelector('.table');
+    const btn = document.querySelector('#load-data');
+    btn.addEventListener('click', makeRequest);
+
+    // populate table
+    table.createTHead();
+    table.createTBody();
+    // row in thead
+    table.firstElementChild.insertRow();
+    // td in row
+    table.firstElementChild.firstElementChild.insertCell().appendChild(document.createTextNode('title'));
+    table.firstElementChild.firstElementChild.insertCell().appendChild(document.createTextNode('author'));
+
+
+    //create xhr object
+    let xhr;
+    function makeRequest() {
+      xhr = new XMLHttpRequest();
+      // assign function to onreadystatechage
+      xhr.onreadystatechange = getData;
+      xhr.open('GET', 'table_data.php');
+      xhr.send();
+      // console.log(xhr);
+      disableBtn();
+    }
+
+      function getData() {
+        if(xhr.readyState === XMLHttpRequest.DONE) {
+          if(xhr.status === 200) {
+            let response = JSON.parse(xhr.responseText);
+            populateTable(response);
+            console.log('data ok');
+          } else {
+            console.log('there has been a problem fetching the data');
+          }
+        }
+      }
+      function populateTable(response) {
+        let tbody = table.tBodies[0];
+        // console.log(response, '-----');
+
+        response.forEach(r=>{
+          tbody.insertRow();
+          tbody.lastElementChild.insertCell().appendChild(document.createTextNode(r[0]));
+          tbody.lastElementChild.insertCell().appendChild(document.createTextNode(r[1]));
+          // console.log(r);
+        });
+        // console.log(tbody);
+      }
+      function disableBtn() {
+        btn.setAttribute('disabled', true);
+      }
+    </script>
+  </body>
+</html>
