@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="device-width, initial-scale=1">
+    <style media="screen">
+      * {box-sizing: border-box;}
+      .slides {
+        border: 2px solid black;
+        overflow: hidden;
+        height: 200px;
+        position: relative;
+      }
+      .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: 1px dashed red;
+        height: 200px;
+        margin: 2px;
+        display: inline-block;
+        width: 100%;
+      }
+      .hidden {
+        transform: translateX(100%);
+      }
+      .current {
+        /* transform: translateX(-100%); */
+      }
+      .red { background: red;}
+      .green { background: green;}
+      .blue { background: blue;}
+    </style>
+    <title></title>
+  </head>
+  <body>
+
+    <div class="slides">
+      <div class="slide current red">First</div>
+      <div class="slide hidden green">B</div>
+      <div class="slide hidden blue">C</div>
+      <div class="slide hidden red">D</div>
+      <div class="slide hidden green">Last</div>
+    </div>
+    <div class="controls">
+      <button id="prev">prev</button>
+      <button id="next">next</button>
+    </div>
+
+    <script type="text/javascript">
+      const slides = document.querySelectorAll('.slide');
+      const slidesArray = Array.from(slides);
+      const prevBtn = document.querySelector('#prev');
+      const nextBtn = document.querySelector('#next');
+
+      nextBtn.addEventListener('click', nextSlide);
+      prevBtn.addEventListener('click', prevSlide);
+
+      function nextSlide() {
+        //find idex current slide
+        let element = slidesArray.find((slide)=>slide.classList.contains('current'));
+        let index = slidesArray.indexOf(element);
+        console.log(index);
+        console.log(slides[index]);
+        if(index < slides.length) {
+          if(slides[index+1]) {
+            slides[index].classList.remove('current');
+            slides[index].classList.add('hidden');
+            slides[index+1].classList.remove('hidden');
+            slides[index+1].classList.add('current');
+          }
+        } else {
+          console.log('at the end');
+        }
+      }
+
+      function prevSlide() {
+        //find idex current slide
+        let element = slidesArray.find((slide)=>slide.classList.contains('current'));
+        let index = slidesArray.indexOf(element);
+        console.log(index);
+        console.log(slides[index]);
+        if(index > -1) {
+          if(slides[index-1]) {
+            slides[index].classList.remove('current');
+            slides[index].classList.add('hidden');
+            slides[index-1].classList.remove('hidden');
+            slides[index-1].classList.add('current');
+          }
+        } else {
+          console.log('at the beginning');
+        }
+      }
+    </script>
+  </body>
+</html>
