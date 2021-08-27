@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style media="screen">
+      .modal {
+        background:rgba(0,0,0,0.3);
+        height: 100vh;
+        width: 100vw;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: grid;
+        transition:all 0.2s ease;
+      }
+      .hidden {
+        transform: translateY(-100%);
+      }
+      .modal img {
+        margin:  auto;
+      }
+    </style>
+    <title>Simple modal</title>
+  </head>
+  <body>
+
+    <div>
+      <button type="button" class="modal-trigger">curious?</button>
+    </div>
+
+    <div class="modal hidden">
+      <img src="https://picsum.photos/200" alt="">
+    </div>
+
+    <script type="text/javascript">
+      const trigger = document.querySelector('.modal-trigger');
+      const modal = document.querySelector('.modal');
+
+      trigger.addEventListener('click', showModal);
+      modal.addEventListener('click', hideModal);
+
+      function showModal(e) {
+        modal.classList.remove('hidden');
+      }
+      function hideModal(e) {
+        modal.classList.add('hidden');
+      }
+    </script>
+  </body>
+</html>
