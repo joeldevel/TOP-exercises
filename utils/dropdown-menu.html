@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style media="screen">
+    * {
+      box-sizing: border-box;
+      font-family: sans-serif;
+
+     }
+      nav {
+        border: 1px solid black;
+        height: 70px;
+      }
+      li {
+        min-width: 90px;
+      }
+      ul {
+        list-style: none;
+      }
+      nav >ul> li {
+        display: inline-block;
+        float: left;
+        background: red;
+        margin: 0 4px;
+        padding: 2px 5px;
+        /* min-width: 70px; */
+      }
+      nav>ul>li>ul {
+        /* background: green; */
+        padding: 2px 5px;
+      }
+
+      .sub-list-item {
+        /* background: white; */
+        min-width: 70px;
+        transition: all 0.1s ease;
+      }
+      .sub-list-item:hover {
+        background: whitesmoke;
+      }
+      .hidden {
+        display: none;
+      }
+      nav >ul> li:hover {
+        background: orangered;
+      }
+
+      .top-level-menu {
+        float: right;
+      }
+      .top-level-menu:hover {
+        cursor: pointer;
+      }
+    </style>
+    <title></title>
+  </head>
+  <body>
+    <nav>
+      <ul class="top-level-menu">
+        <li>toplevel
+          <ul>
+            <li class="sub-list-item hidden"><a href="https://google.com">sublevel</a></li>
+            <li class="sub-list-item hidden">sublevel</li>
+            <li class="sub-list-item hidden">sublevel</li>
+          </ul>
+        </li>
+        <li>toplevel
+          <ul>
+            <li class="sub-list-item hidden">sublevel</li>
+            <li class="sub-list-item hidden">sublevel</li>
+            <li class="sub-list-item hidden">sublevel</li>
+          </ul>
+        </li>
+        <li>toplevel
+          <ul>
+            <li class="sub-list-item hidden">sublevel</li>
+            <li class="sub-list-item hidden">sublevel</li>
+            <li class="sub-list-item hidden">sublevel</li>
+          </ul>
+        </li>
+
+      </ul>
+    </nav>
+
+  <script type="text/javascript">
+    const dropdown = document.querySelectorAll('nav > ul > li');
+    const subListItems = document.querySelectorAll('.sub-list-item');
+
+    dropdown.forEach(item=>item.addEventListener('click', slideMenu));
+
+    function slideMenu(e) {
+      // want to close dropdown list
+      if(!e.target.firstElementChild.firstElementChild.classList.contains('hidden')) {
+        for(let i of e.target.firstElementChild.children) {
+          i.classList.add('hidden');
+        }
+        return;
+      }
+      // make all other elements hidden
+      subListItems.forEach(item=>item.classList.add('hidden'));
+
+      const subItems = e.target.firstElementChild.children;
+      for(let item of subItems) {
+        item.classList.remove('hidden');
+      }
+
+    }
+  </script>
+  </body>
+</html>
