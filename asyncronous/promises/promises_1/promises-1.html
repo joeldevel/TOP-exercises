@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Promises 1</title>
+  </head>
+  <body>
+    <h1>Look at the console!</h1>
+
+    <script type="text/javascript">
+      let myPromise = new Promise( (resolve, reject) => {
+        reject(new Error("Cannot connect to API"));
+        // fake an api request
+        setTimeout( () => {
+          resolve("this is a message from resolve");
+        },  1500);
+      });
+
+      // We have to call 'then' method on the promise with a function
+      myPromise.then( (res) => {
+        console.log(res);
+      }).catch( (rej) => {
+        console.log("something went wrong!");
+        console.log(rej);
+      });
+    </script>
+  </body>
+</html>
