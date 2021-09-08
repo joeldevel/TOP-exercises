@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Using APIs  - async await</title>
+  </head>
+  <body>
+    <img src="#">
+
+
+
+    <script>
+    const img = document.querySelector('img');
+
+    // first, create an async function
+    async function getImage() {
+      // wrap what could go wrong within try-catch blocks
+      try {
+        // response is asyncronous, so we declare it using await keyword
+        const response = await fetch('https://api.giphy.com/v1/gifs/translate?api_key=PUT_YOUR_KEY_HERE&s=cats', {mode: 'cors'})
+        //
+        const catData = await response.json();
+
+        // the src will be completed when the information has arrived
+        img.src = catData.data.images.original.url;
+      } catch(e) {
+        console.log(e);
+      }
+    }
+
+    // call the asyncronous function
+    getImage();
+    </script>
+  </body>
+</html>
