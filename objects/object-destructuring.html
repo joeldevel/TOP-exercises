@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Object destructuring</title>
+</head>
+<body>
+	<h1>Have a look at the console!</h1>
+
+	<script>
+		// we can extract data from an object
+		const book = {
+			isbn: 12341,
+			author: "John Johnson Jr.",
+			price: 100.0
+		}
+
+		// paperback has a default value
+		const {isbn, author, price, paperback=false} = book;
+
+		console.log(author, isbn, price, paperback);
+
+		// and we can call the variable whatever we need
+		const {isbn: serialNumber} = book;
+		console.log(serialNumber);
+	</script>
+	
+</body>
+</html>
