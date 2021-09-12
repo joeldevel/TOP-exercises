@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Arrays - </title>
+</head>	
+<body>	
+	<h1>Open the console!</h1>
+
+	<script>
+		//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+		
+		const fruits = ['anana', 'banana', 'strawberry'];
+
+		// create and /or initialize variables from the fruits array content
+		const [first, second, third] = fruits;
+		let aFruit, anotherFruit, lastFruit;
+		[aFruit, anotherFruit, lastFruit] = fruits;
+
+		console.log(first, aFruit);
+		console.log(second, anotherFruit);
+		console.log(third, lastFruit);
+
+		// swapping variables
+		let cat = "floncho";
+		let dog = "tubetti";
+
+		// swap their names!
+		[cat, dog] = [dog, cat];
+		console.log("cat: ", cat); // -> tubetti;
+		console.log("dog: ", dog); // -> floncho;
+
+		// ignoring returned values (!)
+		function thingsToDo() {
+			return ["work", "study", "sleep"];
+		}
+
+		// ignoring the first two!
+		const [,,toDo] = thingsToDo();
+		console.log("What I have to do: ", toDo);
+
+		// This is weird
+		// Assigning the rest of an array to a variable
+		// toRead is an array
+		const [ read, ...toRead] = ["how to make money online", "how to learn faster", "how to travel to Russia"];
+		console.log(toRead);
+		
+
+    </script>
+</body>
+</html>
